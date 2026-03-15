@@ -13,9 +13,12 @@ public class EnemyState : State<RREnemy, EnemyState> {
     public SpriteRenderer SpriteRenderer => Instance._spriteRenderer;
     public MaterialPropertyBlock MatPropBlock => Instance._enemyMatPropBlock;
     public Dictionary<string, Color> OriginalShaderColors { get; } = [];
+    
     public void AddBurningFx() {
         SpriteRenderer.GetPropertyBlock(MatPropBlock);
-        if(Config.HotCoals.EnableTint) {
+        if(Config.HotCoals.DisableTint) {
+            MatPropBlock.SetFloat(RREnemy.IsStatusFXOnShaderPropertyId, 0);
+        } else {
             for(int i = 0; i < 15; i++) {
                 // TODO: dict setdefault util in necromanager
                 var fromKey = $"FromColor{i}";
@@ -23,27 +26,24 @@ public class EnemyState : State<RREnemy, EnemyState> {
                     fromColor = MatPropBlock.GetColor(fromKey);
                     OriginalShaderColors[fromKey] = fromColor;
                 }
-                
+
                 var toKey = $"ToColor{i}";
                 if(!OriginalShaderColors.TryGetValue(toKey, out var toColor)) {
                     toColor = MatPropBlock.GetColor(toKey);
                     OriginalShaderColors[toKey] = toColor;
                 }
-                
+
                 if(toColor.a > 1e-6) {
                     MatPropBlock.SetColor(toKey, Color.Lerp(fromColor, toColor, Config.HotCoals.TintIntensity));
                 }
             }
-        } else {
-            // disable tint
-            MatPropBlock.SetFloat(RREnemy.IsStatusFXOnShaderPropertyId, 0);
         }
         SpriteRenderer.SetPropertyBlock(MatPropBlock);
     }
 }
 
 [HarmonyPatch(typeof(RREnemy))]
-public static class EnemyPatch {
+public static class RREnemyPatch {
     [HarmonyPatch(nameof(RREnemy.AddStatusFx))]
     [HarmonyPostfix]
     public static void AddStatusFx(RREnemyStatusFxView statusFxView, RREnemy __instance) {
