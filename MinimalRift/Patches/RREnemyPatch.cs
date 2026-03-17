@@ -46,7 +46,7 @@ public class EnemyState : State<RREnemy, EnemyState> {
 public static class RREnemyPatch {
     [HarmonyPatch(nameof(RREnemy.AddStatusFx))]
     [HarmonyPostfix]
-    public static void AddStatusFx(RREnemyStatusFxView statusFxView, RREnemy __instance) {
+    public static void AddStatusFx(RREnemy __instance, RREnemyStatusFxView statusFxView) {
         var state = EnemyState.Of(__instance);
         if(statusFxView.EffectType == RREnemyStatusEffect.Burning) {
             state.AddBurningFx();

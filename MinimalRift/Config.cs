@@ -24,6 +24,6 @@ public static class Config {
     public static class Enemies {
         const string GROUP = "Enemies";
         
-        public static Setting<FXAmount> HitVFX { get; } = new(GROUP, "Enemy Hit VFX", FXAmount.Enabled, "Controls the visual effects for enemy hits.");
+        public static Setting<FxAmount> HitVFX { get; } = new(GROUP, "Enemy Hit VFX", FxAmount.Enabled, "Controls the visual effects for enemy hits.");
     }
 }

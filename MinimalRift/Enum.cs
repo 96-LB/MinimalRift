@@ -1,4 +1,4 @@
-﻿public enum FXAmount {
+﻿public enum FxAmount {
     Disabled,
     Reduced,
     Enabled
