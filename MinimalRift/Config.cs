@@ -10,6 +10,7 @@ public static class Config {
         
         public static Setting<bool> DisableBackgroundVfx { get; } = new(GROUP, "Disable Background Effects", false, "Disables the background visual effects for vibe power.");
         public static Setting<bool> DisableEnemyVfx { get; } = new(GROUP, "Disable Enemy Hit Effects", false, "Disables the enemy hit visual effects for vibe power.");
+        public static Setting<bool> DisableVibeChainSfx { get; } = new(GROUP, "Disable Vibe Chain Hitsounds", false, "Disables the special enemy hit sound effects during vibe chain.");
         public static Setting<float> VibeChainSfx { get; } = new(GROUP, "Vibe Chain Volume", 1f, "Controls the volume of the enemy hitsounds during vibe chains.", new AcceptableValueRange<float>(0, 1));
     }
     
