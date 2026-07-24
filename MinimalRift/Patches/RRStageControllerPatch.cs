@@ -8,7 +8,7 @@ namespace MinimalRift.Patches;
 
 public class RRStageControllerState : State<RRStageController, RRStageControllerState> {
     public void UpdatePortraits() {
-        if(Config.VibePower.DisablePortraits) {
+        if(Config.VibePower.DisablePortraits && Instance._isVibePowerActive) {
             Instance._portraitUiController.UpdateDisplay(Instance._currentPerformanceLevel, Instance._isCalibrationTest);
         }
     }
