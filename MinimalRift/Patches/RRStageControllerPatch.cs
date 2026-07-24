@@ -1,9 +1,18 @@
 using HarmonyLib;
 using RhythmRift;
+using RiftOfTheNecroManager;
 using Shared.FX;
 
 namespace MinimalRift.Patches;
 
+
+public class RRStageControllerState : State<RRStageController, RRStageControllerState> {
+    public void UpdatePortraits() {
+        if(Config.VibePower.DisablePortraits) {
+            Instance._portraitUiController.UpdateDisplay(Instance._currentPerformanceLevel, Instance._isCalibrationTest);
+        }
+    }
+}
 
 [HarmonyPatch(typeof(RRStageController))]
 public static class RRStageControllerPatch {
@@ -37,5 +46,19 @@ public static class RRStageControllerPatch {
     [HarmonyPostfix]
     public static void HandleKilledBoundEnemy_Post(RRStageController __instance, (bool, VFXEffect?) __state) {
         (__instance._isVibePowerActive, __instance._killAttackPrefab) = __state;
+    }
+    
+    [HarmonyPatch(nameof(RRStageController.UpdateUI))]
+    [HarmonyPostfix]
+    public static void UpdateUI(RRStageController __instance) {
+        var state = RRStageControllerState.Of(__instance);
+        state.UpdatePortraits();
+    }
+    
+    [HarmonyPatch(nameof(RRStageController.ActivateVibePower))]
+    [HarmonyPostfix]
+    public static void ActivateVibePower(RRStageController __instance) {
+        var state = RRStageControllerState.Of(__instance);
+        state.UpdatePortraits();
     }
 }

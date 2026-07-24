@@ -1,10 +1,6 @@
-using System;
-using FMOD;
 using FMODUnity;
 using HarmonyLib;
 using RhythmRift;
-using Shared.Audio;
-using UnityEngine.UIElements.Collections;
 
 namespace MinimalRift.Patches;
 
@@ -13,17 +9,16 @@ namespace MinimalRift.Patches;
 public static class RREnemyControllerPatch {
     [HarmonyPatch(nameof(RREnemyController.TryQueueActionRowSoundsForEnemy))]
     [HarmonyPrefix]
-    public static void TryQueueActionRowSoundsForEnemy_Pre(RREnemyController __instance, ref EventReference? __state) {
+    public static void TryQueueActionRowSoundsForEnemy_Pre(RREnemyController __instance, ref EventReference __state) {
+        __state = __instance._vibeChainHitEventRef;
         if(Config.VibePower.DisableVibeChainSfx) {
-            (__instance._vibeChainHitEventRef, __state) = (__instance._inputHitEventRef, __instance._vibeChainHitEventRef);
+            __instance._vibeChainHitEventRef = __instance._inputHitEventRef;
         }
     }
     
     [HarmonyPatch(nameof(RREnemyController.TryQueueActionRowSoundsForEnemy))]
     [HarmonyPostfix]
-    public static void TryQueueActionRowSoundsForEnemy_Post(RREnemyController __instance, ref EventReference? __state) {
-        if(__state != null) {
-            __instance._vibeChainHitEventRef = __state.Value;
-        }
+    public static void TryQueueActionRowSoundsForEnemy_Post(RREnemyController __instance, ref EventReference __state) {
+        __instance._vibeChainHitEventRef = __state;
     }
 }
