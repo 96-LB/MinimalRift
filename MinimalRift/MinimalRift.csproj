@@ -42,6 +42,9 @@
     <Reference Include="Assembly-CSharp">
       <HintPath>lib\RiftOfTheNecroDancer.dll</HintPath>
     </Reference>
+    <Reference Include="FMODUnity">
+      <HintPath>lib\FMODUnity.dll</HintPath>
+    </Reference>
     <Reference Include="RiftOfTheNecroManager">
       <HintPath>lib\RiftOfTheNecroManager.dll</HintPath>
     </Reference>

@@ -8,8 +8,9 @@ public static class Config {
     public static class VibePower {
         const string GROUP = "Vibe Power";
         
-        public static Setting<bool> DisableBackgroundVFX { get; } = new(GROUP, "Disable Background VFX", false, "Disables the background visual effects for vibe power.");
-        public static Setting<bool> DisableEnemyVFX { get; } = new(GROUP, "Disable Enemy Hit VFX", false, "Disables the enemy hit visual effects for vibe power.");
+        public static Setting<bool> DisableBackgroundVfx { get; } = new(GROUP, "Disable Background Effects", false, "Disables the background visual effects for vibe power.");
+        public static Setting<bool> DisableEnemyVfx { get; } = new(GROUP, "Disable Enemy Hit Effects", false, "Disables the enemy hit visual effects for vibe power.");
+        public static Setting<float> VibeChainSfx { get; } = new(GROUP, "Vibe Chain Volume", 1f, "Controls the volume of the enemy hitsounds during vibe chains.", new AcceptableValueRange<float>(0, 1));
     }
     
     public static class HotCoals {

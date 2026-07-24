@@ -1,6 +1,5 @@
 using HarmonyLib;
 using RhythmRift;
-using RiftOfTheNecroManager;
 using Shared.FX;
 
 namespace MinimalRift.Patches;
@@ -15,7 +14,7 @@ public static class RRStageControllerPatch {
         isEnemyAttacking |= Config.Enemies.HitVFX == FxAmount.Disabled;
         
         __state = __instance._isVibePowerActive;
-        __instance._isVibePowerActive &= !Config.VibePower.DisableEnemyVFX;
+        __instance._isVibePowerActive &= !Config.VibePower.DisableEnemyVfx;
     }
     
     [HarmonyPatch(nameof(RRStageController.PlayActionRowVFX))]
@@ -31,7 +30,7 @@ public static class RRStageControllerPatch {
         
         __state = (__instance._isVibePowerActive, __instance._killAttackPrefab);
         __instance._killAttackPrefab = Config.Enemies.HitVFX == FxAmount.Enabled || finalHit ? __instance._killAttackPrefab : null;
-        __instance._isVibePowerActive &= !Config.VibePower.DisableEnemyVFX;
+        __instance._isVibePowerActive &= !Config.VibePower.DisableEnemyVfx;
     }
     
     [HarmonyPatch(nameof(RRStageController.HandleKilledBoundEnemy))]

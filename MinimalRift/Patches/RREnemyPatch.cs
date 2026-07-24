@@ -8,7 +8,6 @@ using UnityEngine;
 namespace MinimalRift.Patches;
 
 
-
 public class EnemyState : State<RREnemy, EnemyState> {
     public SpriteRenderer SpriteRenderer => Instance._spriteRenderer;
     public MaterialPropertyBlock MatPropBlock => Instance._enemyMatPropBlock;
