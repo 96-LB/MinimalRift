@@ -22,3 +22,20 @@ The current version is <ins>**v0.1.0**</ins>. Downloads for the latest version c
 
 > [!TIP]
 > You can find this folder by right clicking on the game in your Steam library and clicking 'Properties'. Then navigate to 'Installed Files' and click 'Browse'.
+
+## Usage
+
+By default, all options are disabled, so you won't notice any difference right away. You can configure all the settings in the mod menu. Currently, the following options are available:
+
+### Vibe Power
+- The lightning in the background can be disabled.
+- The visual effect that plays when you hit enemies during vibe power can be disabled.
+- The vibe power portraits can be disabled.
+- The sound effect that plays when you hit enemies during vibe power can be disabled, or be made quieter.
+
+### Hot Coals
+- The flame graphic on coaled enemies can be disabled, or be made transparent.
+- The red tint effect on coaled enemies can be disabled, or be made less intense.
+
+### Miscellaneous
+- The visual effect that plays when you hit enemies can be or reduced or disabled.
