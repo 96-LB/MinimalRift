@@ -5,6 +5,6 @@ namespace MinimalRift;
 
 
 [BepInPlugin("com.lalabuff.necrodancer.minimalrift", "MinimalRift", "0.1.0")]
-[NecroManagerInfo(isBeta: true)]
+[NecroManagerInfo]
 public class Plugin : RiftPlugin {
 }
